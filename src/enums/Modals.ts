@@ -1,0 +1,21 @@
+enum Modals {
+    CREATE_SCENE_MODAL = 'create-scene-modal',
+    DELETE_SCENE_MODAL = 'delete-scene-modal',
+    CREATE_SCHEDULE_ITEM_MODAL = 'create-schedule-item-modal',
+    CREATE_SCHEDULE_MODAL = 'create-schedule-modal',
+    DELETE_SCHEDULE_MODAL = 'delete-schedule-modal',
+    DELETE_SCHEDULE_ITEM_MODAL = 'delete-schedule-item-modal',
+    DUPLICATE_SCHEDULE_DAY_MODAL = 'duplicate-schedule-day-modal',
+    CHANGE_PASSWORD_MODAL = 'change-password-modal',
+    CHANGE_PERMISSIONS_MODAL = 'change-permissions-modal',
+    DELETE_USER_MODAL = 'delete-user-modal',
+    CREATE_USER_MODAL = 'create-user-modal',
+    INTERFACE_SETTINGS_MODAL = 'interface-settings-modal',
+    CHANGE_USER_NAME_MODAL = 'change-user-name-modal',
+    NO_PERMISSION_MODAL = 'no-permission-modal',
+    CONTACT_FORM_MODAL = 'contact-form-modal',
+    SET_CUSTOM_CHANGE_TIME_MODAL = 'set-custom-change-time-modal',
+    RESTART_MODAL = 'restart-modal',
+    CREATE_DISPOSABLE_PLAN_MODAL = 'create_disposable_plan_modal'
+}
+export default Modals

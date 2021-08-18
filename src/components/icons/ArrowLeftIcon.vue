@@ -1,0 +1,44 @@
+<template>
+  <svg
+    width="16"
+    height="11"
+    viewBox="0 0 16 11"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0.5 5.5H15.5"
+      :stroke="stroke"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M10.5 0.5L15.5 5.5L10.5 10.5"
+      :stroke="stroke"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</template>
+
+<script>
+export default {
+  name: 'DuplicateIcon',
+  props: {
+    fill: {
+      type: String,
+      default: 'none'
+    },
+    stroke: {
+      type: String,
+      default: '#00418E'
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

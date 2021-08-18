@@ -1,0 +1,49 @@
+html {
+  font-size: 62.5%;
+  user-select: none;
+  overflow-x: hidden;
+  //scroll-behavior: smooth;
+}
+
+body {
+  font-size: calc(max(14px, 1.6rem));
+  font-family: $default-font-family;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: opacity 0.25s ease;
+  transition-delay: 0.25s;
+}
+
+input,textarea {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.label {
+  font-size: 14px;
+  line-height: 160%;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  display: block;
+  color: #696F79;
+}
+
+.field {
+  margin-bottom: 2.4rem;
+}

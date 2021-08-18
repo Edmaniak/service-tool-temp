@@ -1,0 +1,85 @@
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.content-end {
+  justify-content: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+.relative {
+  position: relative;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+$space: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 16, 20, 24, 25, 30, 35, 40, 45, 50, 75, 100);
+$pos: (top, bottom, left, right);
+
+@each $s in $space {
+  .m#{$s} { margin: #{$s}px; }
+  .p#{$s} { padding: #{$s}px; }
+  .xs-m#{$s} {
+    @media (max-width: $mobile-portrait) {
+      margin: #{$s}px !important;
+    }
+  }
+  .xs-p#{$s} {
+    @media (max-width: $mobile-portrait) {
+      padding: #{$s}px !important;
+    }
+  }
+  @each $p in $pos {
+    .m#{str-slice($p, 0, 1)}-#{$s} { margin-#{$p}: #{$s}px; }
+    .p#{str-slice($p, 0, 1)}-#{$s} { padding-#{$p}: #{$s}px; }
+  }
+}

@@ -1,0 +1,42 @@
+$primary-blue: #00418e;
+$dark-blue: #00244F;
+$light-blue: #4070AA;
+$neutral: #72869D;
+$light-gray: #F3F3F4;
+$creme: #F4F4F4;
+$success: #91DD91;
+$red: #FF6A6C;
+$error: #EA3D3D;
+$orange: #E8850C;
+
+// Breakpoints
+$app-break: 1430px;
+$tablet-landscape: 1113px;
+$mobile-landscape: 812px;
+$mobile-portrait: 568px;
+$mobile-sm: 379px;
+$default-font-family: "Mont", Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+
+.dark-blue {
+  color: $dark-blue;
+}
+
+.neutral {
+  color: $neutral;
+}
+
+.light-gray {
+  color: $light-gray;
+}
+
+.creme {
+  color: $creme;
+}
+
+.green, .success {
+  color: $success;
+}
+
+.red {
+  color: $red;
+}
