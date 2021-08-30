@@ -1,0 +1,14 @@
+{
+  "layout": {
+    "menu": "menu",
+    "favoriteUnits": "Oblíbené jednotky",
+    "serviceTool": "Service Tool"
+  },
+  "navigation": {
+    "overview": "Hlavní přehled",
+    "logs": "Analýza logů",
+    "forms": "Formuláře",
+    "communication": "Komunikace s Atreou",
+    "orders": "Objednávky"
+  }
+}

@@ -3,21 +3,22 @@
     v-if="brand"
     :class="`brand-atrea.cz`"
   >
-   Service tool
+   <router-view/>
   </div>
 </template>
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
-import {useStore} from 'vuex';
-import InitializationLoader from '@/components/InitializationLoader.vue';
+import {useStore} from 'vuex'
 import {ElementQueries} from 'css-element-queries';
+import Navigation from '@/components/Navigation.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {InitializationLoader},
+  components: {Navigation},
   setup () {
     const store = useStore()
     const connecting = computed(() => store.state.connecting)
+    const brand = 'atrea.cz'
 
     // Modal size checking due to dynamical overflow
     ElementQueries.listen();
@@ -78,6 +79,7 @@ $types: ('text', 'bg', 'active', 'hover');
         }
       }
     }
+
     .secondary-menu {
       .nav-item__link--active {
         color: map-get($list, #{$brand}-primary);
