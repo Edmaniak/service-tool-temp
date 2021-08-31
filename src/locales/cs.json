@@ -1,4 +1,8 @@
 {
+  "general": {
+    "confirm": "Potvrdit",
+    "cancel": "Zrušit"
+  },
   "layout": {
     "menu": "menu",
     "favoriteUnits": "Oblíbené jednotky",
@@ -10,5 +14,20 @@
     "forms": "Formuláře",
     "communication": "Komunikace s Atreou",
     "orders": "Objednávky"
+  },
+  "overview": {
+    "connectedUnits": "Aktuálně připojené jednotky",
+    "favoriteUnits": "Oblíbené jednotky",
+    "otherUnits": "Další jednotky",
+    "addNewUnit": "+ Přidat novou jednotku"
+  },
+  "addNewUnitModal": {
+    "addNewUnit": "Přidání nové jednotky",
+    "header": "Vyberte, jakým způsobem chete přidat jednotku",
+    "text": "Lorem ipsum",
+    "lan": "Vyhledáním v lokální síti",
+    "qr": "Podle QR kodu",
+    "serial": "Podle výrobního čísla",
+    "cloud": "Z účtu ConnectServer"
   }
 }

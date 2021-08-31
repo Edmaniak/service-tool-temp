@@ -20,20 +20,20 @@
     <ul class="navigation__list">
       <li :key="item.to.name" v-for="item in items" class="navigation__item">
         <router-link class="navigation__link" :to="item.to">
-          <img class="navigation__icon" src="" alt="">
+          <img class="navigation__icon" :src="require(`../assets/img/menu/${item.to.name}.svg`)" :alt="item.title">
           <span class="navigation__title">{{ item.title }}</span>
         </router-link>
       </li>
     </ul>
     <h3 class="navigation__header">{{ $t('layout.favoriteUnits') }}</h3>
-    <ul class="navigation__list">
+<!--    <ul class="navigation__list">
       <li :key="item.to.name" v-for="item in items" class="navigation__item">
         <router-link class="navigation__link" :to="item.to">
           <img class="navigation__icon" src="" alt="">
           <span class="navigation__title">{{ item.title }}</span>
         </router-link>
       </li>
-    </ul>
+    </ul>-->
   </div>
 </template>
 
@@ -64,14 +64,16 @@ export default defineComponent({
 @import "../assets/scss/variables";
 
 .navigation {
-  padding: 24px;
+  padding: 24px 0;
   background: $dark-blue;
   color: #FFFFFF;
   width: 80px;
   height: 100vh;
   position: fixed;
   left: 0;
+  top: 0;
   transition: all 0.3s;
+  z-index: 2;
 
   &__logo {
     line-height: 165%;
@@ -79,6 +81,7 @@ export default defineComponent({
     letter-spacing: 0.32em;
     text-transform: uppercase;
     margin-bottom: 109px;
+    padding-left: 27px;
     opacity: 0;
     font-weight: 600;
     transition: all 0.3s;
@@ -102,6 +105,7 @@ export default defineComponent({
     opacity: 0;
     margin-bottom: 29px;
     white-space: nowrap;
+    padding-left: 27px;
   }
 
   &__list {
@@ -112,23 +116,25 @@ export default defineComponent({
 
   &__link {
     display: flex;
+    padding-left: 27px;
     align-items: center;
     color: #FFFFFF;
+    height: 80px;
     font-weight: 600;
     font-size: 16px;
+    position: relative;
     line-height: 165%;
-  }
-
-  &__item {
-    margin-bottom: 60px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    &--active {
+    &.nav-item__link--active {
       background: rgba(255, 255, 255, 0.1);
-      border-left: 4px solid #FFFFFF;
+      &:before {
+        content: '';
+        width: 4px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #FFFFFF;
+      }
     }
   }
 
@@ -145,7 +151,7 @@ export default defineComponent({
   &__hamburger {
     position: absolute;
     top: 31px;
-    left: calc((80px - 23px) / 2);
+    left: calc((80px - 26px) / 2);
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -190,7 +196,7 @@ export default defineComponent({
       opacity: 0.5;
     }
     .navigation__hamburger {
-      transform: translateX(245px);
+      transform: translateX(267px);
       left: unset;
       > svg {
         right: unset;

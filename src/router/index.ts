@@ -7,6 +7,7 @@ import Orders from '@/pages/Orders.vue'
 import Logs from '@/pages/Logs.vue'
 import Communication from '@/pages/Communication.vue'
 import MainLayout from '@/MainLayout.vue'
+import UnitDetail from '@/pages/UnitDetail.vue'
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -18,6 +19,12 @@ const routes: Array<RouteRecordRaw> = [
             {name: PageKeys.ORDERS, path: PageKeys.ORDERS, component: Orders},
             {name: PageKeys.LOGS, path: PageKeys.LOGS, component: Logs},
             {name: PageKeys.COMMUNICATION, path: PageKeys.COMMUNICATION, component: Communication},
+        ]
+    },
+    {path: '/unit/:boardNumber', name: PageKeys.UNIT_DETAIL, component: UnitDetail},
+    {
+        path: '/settings', name: PageKeys.SETTINGS, component: Overview, children: [
+            {path: '', component: Overview}
         ]
     }
 
