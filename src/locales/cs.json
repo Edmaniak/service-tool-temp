@@ -29,5 +29,17 @@
     "qr": "Podle QR kodu",
     "serial": "Podle výrobního čísla",
     "cloud": "Z účtu ConnectServer"
+  },
+  "detail": {
+    "backToOverview": "Zpět na přehled",
+    "menu": {
+      "unitInfo": "Informace o jednotce",
+      "servisBook": "Servisní knížka",
+      "userRequirements": "Uživatelské požadavky",
+      "communication": "Komunikace s Atreou",
+      "logs": "Logy",
+      "configuration": "Konfigurace",
+      "servisSettings": "Servisní nastavení"
+    }
   }
 }

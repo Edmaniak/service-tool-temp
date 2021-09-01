@@ -11,7 +11,6 @@ module.exports = {
         '@vue/typescript/recommended',
         'plugin:nuxt/recommended'
     ],
-    'plugins': ['unused-imports'],
     parserOptions: {
         ecmaVersion: 2020
     },
@@ -28,6 +27,7 @@ module.exports = {
         '@typescript-eslint/camelcase': 'warn',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-use-before-define': 'warn',
+        '@typescript-eslint/strict-property-initialization': 'off',
         '@intlify/vue-i18n/no-unused-keys': 'off'
     },
     overrides: [

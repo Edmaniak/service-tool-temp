@@ -1,52 +1,79 @@
-import IUnit from '@/model/interface/IUnit';
-import UnitConnector from '@/UnitConnector';
+import UnitDTO from '@/model/UnitDTO';
+import UnitConnector from '@/services/UnitConnector';
+import Brand from '@/enums/Brand';
+import Connector from '@/services/Connector';
+import Localization from '@/enums/Localization';
 
 export default class Unit {
-    public connector;
-    public link: {addresses: string};
-    public unit: IUnit;
+    public unit: UnitDTO;
     public port: number;
     public variables = {};
-    public mapping;
+    public mapping: any;
     public board_serials = {};
-    public inputs;
-    public outputs;
-    public config;
-    public context;
-    public boards;
-    public variable_types;
+    public inputs: any;
+    public outputs: any;
+    public config: any;
+    public context: any;
+    public boards: any;
+    public variable_types: any;
     public callback
-    public edited;
+    public edited: any;
+    public addresses: Record<string, string>;
+    public board_number: string;
+    public brand: Brand;
+    public connector: UnitConnector;
+    public cloud: {
+        enable: boolean;
+        link: string;
+        support: string;
+    };
+    public localisation: Localization;
+    public name: string;
+    public production_number: string;
+    public type: string;
+    public version: string;
+    public target: {
+        broadcast: string;
+        interface: string;
+    };
+    public link: { address: string };
+    public last_seen: string | Date;
+    public connected: boolean;
 
-    constructor (unit: IUnit, callback: Function) {
+    constructor (unit: UnitDTO, callback?: Function) {
 
         this.callback = callback
 
-        Object.keys(unit).forEach(property => {
-            this[property] = unit[property]
-        })
+        Object.keys(unit).forEach(property => this[property] = unit[property])
 
-        if (unit.connector === undefined) {
-            this.connector = new UnitConnector(this.getSocketUrl())
-            this.connector.onopen = async () => {
-                await this.refresh()
-                this.callback()
-            }
-            this.connector.open()
+        this.connector = new UnitConnector(this.getSocketUrl())
+        this.connector.onOpen = async () => {
+            await this.refresh()
+            if (this.callback) this.callback()
             console.log('Connecting to unit: ' + this.getHost())
         }
 
     }
 
-    getHost () {
+    public connect (): void {
+        this.connector.open()
+        this.connected = true
+    }
+
+    public disconnect (): void {
+        this.connector.close()
+        this.connected = false
+    }
+
+    public getHost (): string {
         return `${this.link.address}:${this.port}`
     }
 
-    getSocketUrl () {
+    public getSocketUrl (): string {
         return `ws://${this.getHost()}/service/ws`
     }
 
-    async refresh () {
+    public async refresh (): Promise<void> {
         this.config = await this.connector.getConfig()
         this.inputs = await this.connector.getInputs()
         this.outputs = await this.connector.getOutputs()
@@ -56,19 +83,19 @@ export default class Unit {
 
         this.mapping = await this.connector.getMapping()
         console.log(this.mapping)
-        this.mapping.forEach(board => this.board_serials[board.name] = board.serial)
+        this.mapping.forEach((board: any) => this.board_serials[board.name] = board.serial)
 
         console.log(this.context)
 
         const data = [...this.config, ...this.inputs, ...this.outputs, ...this.context]
         data.forEach(v => this.variables[v.name] = v)
 
-        this.connector.setListener('variable_changes', (ev) => {
+        this.connector.setListener('variable_changes', (ev: any) => {
             Object.keys(ev).forEach(variable => {
                 if (this.variables[variable] != undefined)
                     this.variables[variable] = ev[variable]
             });
-            this.callback()
+            if (this.callback) this.callback()
         })
     }
 
@@ -76,6 +103,6 @@ export default class Unit {
         const res = await this.connector.save()
         this.edited = false
         console.info('Configuration saved', res)
-        this.callback()
+        if (this.callback) this.callback()
     }
 }

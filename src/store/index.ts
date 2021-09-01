@@ -1,11 +1,16 @@
 import { createStore } from 'vuex'
 import Modals from '@/enums/Modals';
 import DiscoveryApi from '@/api/DiscoveryApi';
+import UnitDTO from '@/model/UnitDTO';
+import WindowManager from '@/services/WindowManager';
+import Unit from '@/model/Unit';
 
 
 type AppState = {
   activeModals: Array<Modals>;
-  units: Array<any>
+  units: Record<string, UnitDTO>;
+  selectedUnit: Unit | null
+  windowManager: WindowManager
 }
 
 
@@ -17,6 +22,7 @@ export enum Mutations {
 
 export enum Getters {
   IS_MODAL_ACTIVE = 'IS_MODAL_ACTIVE',
+  GET_UNIT = 'GET_UNIT',
 }
 
 export enum Actions {
@@ -26,7 +32,9 @@ export enum Actions {
 export default createStore<AppState>({
   state: {
     activeModals: [],
-    units: []
+    units: {},
+    selectedUnit: null,
+    windowManager: new WindowManager()
   },
 
   actions: {
@@ -38,8 +46,8 @@ export default createStore<AppState>({
         unit.link = {address: ip.split(':')[0]}
         unit.last_seen = new Date()
       }
-      commit(Mutations.ADD_UNIT, unit)
-    }
+      commit(Mutations.ADD_UNIT, new Unit(unit))
+    },
   },
   mutations: {
     [Mutations.ADD_ACTIVE_MODAL]: (_state, modalId: Modals) => {
@@ -51,13 +59,17 @@ export default createStore<AppState>({
       const index = _state.activeModals.findIndex(item => item === modalId)
       _state.activeModals.splice(index, 1)
     },
-    [Mutations.ADD_UNIT]: (_state, unit) => {
-      _state.units.push(unit)
+    [Mutations.ADD_UNIT]: (_state, unit: Unit) => {
+      console.log(unit)
+      _state.units[unit.board_number] = unit
     }
   },
   getters: {
     [Getters.IS_MODAL_ACTIVE]: (_state) => (modalId: Modals) => {
       return _state.activeModals.includes(modalId)
     },
+    [Getters.GET_UNIT]: (_state) => (boardNumber: string) => {
+      return _state.units[boardNumber]
+    }
   }
 })

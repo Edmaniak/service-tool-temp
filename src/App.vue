@@ -1,24 +1,62 @@
 <template>
   <div
-    v-if="brand"
-    :class="`brand-atrea.cz`"
+      v-if="brand"
+      :class="`brand-atrea.cz`"
   >
-   <router-view/>
+    <router-view/>
   </div>
 </template>
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import {useStore} from 'vuex'
 import {ElementQueries} from 'css-element-queries';
-import Navigation from '@/components/Navigation.vue';
+import {ipcRenderer} from 'electron';
+import {BrowserWindow, getCurrentWindow} from '@electron/remote';
+import Unit from '@/model/Unit';
+import {eventHub} from '@/utils/Utils';
+import Events from '@/enums/Events';
 
 export default defineComponent({
   name: 'App',
-  components: {Navigation},
   setup () {
     const store = useStore()
     const connecting = computed(() => store.state.connecting)
     const brand = 'atrea.cz'
+
+    let lastMutationId = 0
+    store.subscribe((mutation) => {
+      mutation['id'] = lastMutationId
+      console.log(mutation)
+      BrowserWindow.getAllWindows().forEach((window: any) => {
+        console.log(getCurrentWindow().id, window.id)
+        if (getCurrentWindow().id !== window.id) {
+          window.webContents.send('data-change', JSON.stringify(mutation))
+        }
+      })
+      lastMutationId++
+    })
+
+    // Propagating state changes to all windows
+    ipcRenderer.on(Events.STATE_CHANGED, (event, data) => {
+      console.log('event')
+      const mutation = JSON.parse(data)
+      if (lastMutationId === mutation.id) {
+        store.commit(mutation.type, mutation.payload)
+      }
+    })
+
+    // Propagating state when opening new window
+    ipcRenderer.on(Events.WINDOW_OPENED, (event, data) => {
+      console.log('state replaced within initialization')
+      const state = JSON.parse(data)
+      store.replaceState(state)
+      //@ts-ignore
+      Object.keys(store.state.units).forEach((key: string) => store.state.units[key] = new Unit(store.state.units[key]))
+      console.log(store.state)
+      eventHub.$emit(Events.WINDOW_INITIALIZED)
+    })
+
+    // Refreshing connections
 
     // Modal size checking due to dynamical overflow
     ElementQueries.listen();

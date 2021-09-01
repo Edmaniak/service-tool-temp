@@ -1,8 +1,8 @@
 import Brand from '@/enums/Brand';
 import Localization from '@/enums/Localization';
-import Connector from '@/Connector';
+import Connector from '@/services/Connector';
 
-export default interface IUnit {
+export default interface UnitDTO {
     addresses: Record<string, string>;
     board_number: string;
     brand: Brand;

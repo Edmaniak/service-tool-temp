@@ -21,8 +21,10 @@ export default {
 @import "assets/scss/variables";
   .app__main {
     background: $creme;
-    height: 100vh;
+    min-height: 100vh;
     padding-left: 120px;
+    padding-right: 45px;
     padding-top: 64px;
+    padding-bottom: 200px;
   }
 </style>

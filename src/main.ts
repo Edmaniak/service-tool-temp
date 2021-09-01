@@ -8,12 +8,8 @@ import buildInfo from './../build.json'
 import {eventHub} from '@/utils/Utils';
 import Events from '@/enums/Events';
 //import InitializationLoader from '@/components/InitializationLoader.vue';
-import filters from '@/utils/filters';
-
-let FIRST_INITIALIZATION = true
 
 const i18n = setupI18n({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     globalInjection: true,
     legacy: false,

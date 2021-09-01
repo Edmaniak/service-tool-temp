@@ -1,3 +1,4 @@
+//@ts-ignore
 import {PersistentWebsocket} from 'persistent-websocket';
 import SocketResponse from '@/model/SocketResponse';
 
