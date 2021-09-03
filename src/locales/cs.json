@@ -44,5 +44,16 @@
       "unitRegulation": "Regulace jednotky",
       "monitoring": "Monitor provozu"
     }
+  },
+  "settings": {
+    "title": "Nastavení",
+    "menu": {
+      "account": "Nastavení účtu",
+      "certificates": "Správa certifikátů",
+      "language": "Jazyk",
+      "contact": "Kontaktní údaje",
+      "distributor": "Kontakt na distributora",
+      "update": "Aktualizace aplikace"
+    }
   }
 }

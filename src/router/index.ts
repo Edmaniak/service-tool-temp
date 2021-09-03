@@ -9,6 +9,13 @@ import Communication from '@/pages/Communication.vue'
 import MainLayout from '@/MainLayout.vue'
 import UnitDetail from '@/pages/UnitDetail.vue'
 import store from '@/store'
+import Settings from '@/pages/Settings.vue';
+import SettingsAccount from '@/pages/settings/SettingsAccount.vue'
+import SettingsCertificates from '@/pages/settings/SettingsCertificates.vue'
+import SettingsLanguage from '@/pages/settings/SettingsLanguage.vue'
+import SettingsContact from '@/pages/settings/SettingsContact.vue'
+import SettingsDistributor from '@/pages/settings/SettingsDistributor.vue'
+import SettingsUpdate from '@/pages/settings/SettingsUpdate.vue'
 
 
 function beforeDetailEnter (to: any, from: any, next: any) {
@@ -32,8 +39,14 @@ const routes: Array<RouteRecordRaw> = [
         ]
     },
     {
-        path: '/settings', name: PageKeys.SETTINGS, component: Overview, children: [
-            {path: '', component: Overview}
+        path: '/settings', name: PageKeys.SETTINGS, component: Settings, children: [
+            {path: '', component: Settings},
+            {name: PageKeys.SETTINGS_ACCOUNT, path: PageKeys.SETTINGS_ACCOUNT, component: SettingsAccount},
+            {name: PageKeys.SETTINGS_CERTIFICATES, path: PageKeys.SETTINGS_CERTIFICATES, component: SettingsCertificates},
+            {name: PageKeys.SETTINGS_LANGUAGE, path: PageKeys.SETTINGS_LANGUAGE, component: SettingsLanguage},
+            {name: PageKeys.SETTINGS_CONTACT, path: PageKeys.SETTINGS_CONTACT, component: SettingsContact},
+            {name: PageKeys.SETTINGS_DISTRIBUTOR, path: PageKeys.SETTINGS_DISTRIBUTOR, component: SettingsDistributor},
+            {name: PageKeys.SETTINGS_UPDATE, path: PageKeys.SETTINGS_UPDATE, component: SettingsUpdate},
         ]
     }
 
