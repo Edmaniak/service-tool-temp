@@ -68,6 +68,7 @@ export default defineComponent({
       font-weight: 600;
       font-size: 22px;
       margin-bottom: 4px;
+      color: $dark-blue;
       line-height: 140%;
     }
     &__description {

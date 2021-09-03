@@ -1,6 +1,6 @@
 <template>
-  <DetailCard :title="$t('detail.menu.configuration')" >
-    <div class="detail-configuration"></div>
+  <DetailCard :title="$t('detail.menu.servisSettings')">
+    <div class="detail-servis-settings"></div>
   </DetailCard>
 </template>
 
@@ -8,13 +8,13 @@
 import DetailCard from '@/components/detail/DetailCard.vue'
 import {defineComponent} from 'vue';
 export default defineComponent({
-  name: 'DetailConfiguration',
+  name: 'DetailServisSettings',
   components: {DetailCard}
 })
 </script>
 
-<style lang="scss" scoped>
-  .detail-configuration {
+<style scoped lang="scss">
+  .detail-servis-settings {
 
   }
 </style>

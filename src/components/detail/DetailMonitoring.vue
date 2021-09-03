@@ -1,21 +1,20 @@
 <template>
-  <DetailCard :title="$t('detail.menu.logs')">
-    <div class="detail-logs"></div>
+  <DetailCard :title="$t('detail.menu.monitoring')">
+    <div class="detail-monitoring"></div>
   </DetailCard>
 </template>
 
 <script lang="ts">
 import DetailCard from '@/components/detail/DetailCard.vue'
-import {defineComponent} from 'vue';
-
+import {defineComponent} from 'vue'
 export default defineComponent({
-  name: 'DetailLogs',
+  name: 'DetailMonitoring',
   components: {DetailCard}
 })
 </script>
 
 <style scoped lang="scss">
-.detail-logs {
+  .detail-monitoring {
 
-}
+  }
 </style>

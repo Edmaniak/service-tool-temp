@@ -1,6 +1,6 @@
 <template>
-  <DetailCard :title="$t('detail.menu.communication')" >
-    <div class="detail-communication"></div>
+  <DetailCard :title="$t('detail.menu.unitRegulation')">
+    <div class="detail-unit-regulation"></div>
   </DetailCard>
 </template>
 
@@ -9,13 +9,13 @@ import {defineComponent} from 'vue';
 import DetailCard from '@/components/detail/DetailCard.vue';
 
 export default defineComponent({
-  name: 'DetailCommunication',
+  name: 'DetailUnitRegulation',
   components: {DetailCard}
 })
 </script>
 
 <style lang="scss" scoped>
-  .detail-communication {
+  .detail-unit-regulation {
 
   }
 </style>

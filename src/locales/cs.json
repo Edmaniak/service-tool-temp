@@ -38,8 +38,11 @@
       "userRequirements": "Uživatelské požadavky",
       "communication": "Komunikace s Atreou",
       "logs": "Logy",
-      "configuration": "Konfigurace",
-      "servisSettings": "Servisní nastavení"
+      "orders": "Objednávky",
+      "configuration": "Zprovoznění",
+      "servisSettings": "Servisní nastavení",
+      "unitRegulation": "Regulace jednotky",
+      "monitoring": "Monitor provozu"
     }
   }
 }

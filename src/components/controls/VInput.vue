@@ -116,13 +116,10 @@ export default defineComponent( {
   },
   emits: ['update:modelValue', 'blur'],
   setup (props, {emit}) {
-    const store = useStore()
     const validations = useValidations()
     const errorMessages = computed(() => validations && validations[props.name] ? validations[props.name].$errors : [])
-    const primaryColor = computed<Colors>(() => store.getters[Getters.GET_BRAND_COLOR]('primary'))
     const passwordShowed = ref<boolean>(false)
     const dynamicType = ref<string>(props.type === 'number' ? 'text' : props.type)
-    const isController = inject(ProvidedVars.IS_CONTROLLER)
     const focused = ref<boolean>(false)
     const inputElement = ref<HTMLElement | null>(null)
 
@@ -132,14 +129,10 @@ export default defineComponent( {
 
     const blur = ($event: any) => {
       emit('blur', $event.target.value)
-      eventHub.$emit(Events.INPUT_BLUR, $event)
     }
 
     const focus = () => {
       focused.value = true
-      if (isController) {
-        eventHub.$emit(Events.INPUT_FOCUS, inputElement.value)
-      }
     }
 
     const showPasswordSwitch = () => {
@@ -147,7 +140,7 @@ export default defineComponent( {
       passwordShowed.value ? dynamicType.value = 'text' : dynamicType.value = 'password'
     }
 
-    return {input, inputElement, focused, blur, focus, errorMessages, primaryColor, passwordShowed,  showPasswordSwitch, dynamicType, Colors}
+    return {input, inputElement, focused, blur, focus, errorMessages, passwordShowed,  showPasswordSwitch, dynamicType, Colors}
   }
 })
 </script>
