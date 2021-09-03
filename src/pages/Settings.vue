@@ -23,5 +23,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+  .settings {
+    padding-top: 48px;
+    padding-left: 100px;
+  }
 </style>

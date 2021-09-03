@@ -35,20 +35,34 @@ const routes: Array<RouteRecordRaw> = [
             {name: PageKeys.ORDERS, path: PageKeys.ORDERS, component: Orders},
             {name: PageKeys.LOGS, path: PageKeys.LOGS, component: Logs},
             {name: PageKeys.COMMUNICATION, path: PageKeys.COMMUNICATION, component: Communication},
-            {path: '/unit/:boardNumber', name: PageKeys.UNIT_DETAIL, component: UnitDetail, beforeEnter: async (to, from, next) => await beforeDetailEnter(to, from, next)},
+            {
+                path: '/unit/:boardNumber',
+                name: PageKeys.UNIT_DETAIL,
+                component: UnitDetail,
+                beforeEnter: async (to, from, next) => await beforeDetailEnter(to, from, next)
+            },
+            {
+                path: '/settings', name: PageKeys.SETTINGS, component: Settings, children: [
+                    {path: '', component: SettingsAccount},
+                    {name: PageKeys.SETTINGS_ACCOUNT, path: PageKeys.SETTINGS_ACCOUNT, component: SettingsAccount},
+                    {
+                        name: PageKeys.SETTINGS_CERTIFICATES,
+                        path: PageKeys.SETTINGS_CERTIFICATES,
+                        component: SettingsCertificates
+                    },
+                    {name: PageKeys.SETTINGS_LANGUAGE, path: PageKeys.SETTINGS_LANGUAGE, component: SettingsLanguage},
+                    {name: PageKeys.SETTINGS_CONTACT, path: PageKeys.SETTINGS_CONTACT, component: SettingsContact},
+                    {
+                        name: PageKeys.SETTINGS_DISTRIBUTOR,
+                        path: PageKeys.SETTINGS_DISTRIBUTOR,
+                        component: SettingsDistributor
+                    },
+                    {name: PageKeys.SETTINGS_UPDATE, path: PageKeys.SETTINGS_UPDATE, component: SettingsUpdate},
+                ]
+            }
         ]
     },
-    {
-        path: '/settings', name: PageKeys.SETTINGS, component: Settings, children: [
-            {path: '', component: Settings},
-            {name: PageKeys.SETTINGS_ACCOUNT, path: PageKeys.SETTINGS_ACCOUNT, component: SettingsAccount},
-            {name: PageKeys.SETTINGS_CERTIFICATES, path: PageKeys.SETTINGS_CERTIFICATES, component: SettingsCertificates},
-            {name: PageKeys.SETTINGS_LANGUAGE, path: PageKeys.SETTINGS_LANGUAGE, component: SettingsLanguage},
-            {name: PageKeys.SETTINGS_CONTACT, path: PageKeys.SETTINGS_CONTACT, component: SettingsContact},
-            {name: PageKeys.SETTINGS_DISTRIBUTOR, path: PageKeys.SETTINGS_DISTRIBUTOR, component: SettingsDistributor},
-            {name: PageKeys.SETTINGS_UPDATE, path: PageKeys.SETTINGS_UPDATE, component: SettingsUpdate},
-        ]
-    }
+
 
 ]
 

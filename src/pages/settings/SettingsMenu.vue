@@ -5,14 +5,15 @@
     </h3>
     <ul class="settings-menu__list">
       <li
-        v-for="item in items"
-        class="settings-menu__item"
+          v-for="item in items"
+          class="settings-menu__item"
       >
         <router-link
-          class="settings-menu__link"
-          :to="item.to"
+            class="settings-menu__link"
+            :to="item.to"
         >
-          {{ item.title }}
+          <span class="settings-menu__placeholder"></span>
+          <span>{{ item.title }}</span>
         </router-link>
       </li>
     </ul>
@@ -41,6 +42,59 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.settings-menu {
+  @import "../../assets/scss/variables";
+  width: 290px;
+  margin-top: 16px;
 
+  &__title {
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 100%;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    /* Primary / Dark Blue */
+    color: $dark-blue
+  }
+
+  &__item {
+    color: $dark-blue;
+  }
+
+  &__placeholder {
+    margin-right: 16px;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    border: 1px solid $dark-blue;
+    position: relative;
+
+    &:after {
+      content: '';
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      position: absolute;
+      left: 0;
+      height: 1px;
+      background: $dark-blue;
+    }
+  }
+
+  &__link {
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 165%;
+    display: flex;
+    align-items: center;
+
+    &.nav-item__link--active {
+      background: rgba(0, 36, 79, 0.05)
+    }
+  }
+}
 </style>
